@@ -20,7 +20,8 @@ export function AddExchangeIntegrationModal(props: DialogProps) {
     defaultValues: {
       username: "",
       password: "",
-      url: process.env.EXCHANGE_DEFAULT_EWS_URL || "",
+      url:
+        process.env.EXCHANGE_DEFAULT_EWS_URL || "https://exchange.reutlingen-university.de/Ews/Exchange.asmx",
     },
   });
   const [errorMessage, setErrorMessage] = useState("");

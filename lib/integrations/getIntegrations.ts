@@ -1,12 +1,6 @@
 import { Prisma } from "@prisma/client";
 import _ from "lodash";
 
-/**
- *  We can't use aliases in playwright tests (yet)
- * https://github.com/microsoft/playwright/issues/7121
- */
-import { validJson } from "../../lib/jsonUtils";
-
 const credentialData = Prisma.validator<Prisma.CredentialArgs>()({
   select: { id: true, type: true },
 });
@@ -32,7 +26,7 @@ export type Integration = {
 
 export const ALL_INTEGRATIONS = [
   {
-    installed: !!(process.env.GOOGLE_API_CREDENTIALS && validJson(process.env.GOOGLE_API_CREDENTIALS)),
+    installed: false,
     type: "google_calendar",
     title: "Google Calendar",
     imageSrc: "integrations/google-calendar.svg",
@@ -40,7 +34,7 @@ export const ALL_INTEGRATIONS = [
     variant: "calendar",
   },
   {
-    installed: !!(process.env.MS_GRAPH_CLIENT_ID && process.env.MS_GRAPH_CLIENT_SECRET),
+    installed: false,
     type: "office365_calendar",
     title: "Office 365 / Outlook.com Calendar",
     imageSrc: "integrations/outlook.svg",
@@ -48,7 +42,7 @@ export const ALL_INTEGRATIONS = [
     variant: "calendar",
   },
   {
-    installed: !!(process.env.ZOOM_CLIENT_ID && process.env.ZOOM_CLIENT_SECRET),
+    installed: false,
     type: "zoom_video",
     title: "Zoom",
     imageSrc: "integrations/zoom.svg",
@@ -56,7 +50,7 @@ export const ALL_INTEGRATIONS = [
     variant: "conferencing",
   },
   {
-    installed: !!process.env.DAILY_API_KEY,
+    installed: false,
     type: "daily_video",
     title: "Daily.co Video",
     imageSrc: "integrations/daily.svg",
@@ -64,7 +58,7 @@ export const ALL_INTEGRATIONS = [
     variant: "conferencing",
   },
   {
-    installed: true,
+    installed: false,
     type: "caldav_calendar",
     title: "CalDav Server",
     imageSrc: "integrations/caldav.svg",
@@ -72,7 +66,7 @@ export const ALL_INTEGRATIONS = [
     variant: "calendar",
   },
   {
-    installed: true,
+    installed: false,
     type: "apple_calendar",
     title: "Apple Calendar",
     imageSrc: "integrations/apple-calendar.svg",
@@ -88,11 +82,7 @@ export const ALL_INTEGRATIONS = [
     variant: "calendar",
   },
   {
-    installed: !!(
-      process.env.STRIPE_CLIENT_ID &&
-      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY &&
-      process.env.STRIPE_PRIVATE_KEY
-    ),
+    installed: false,
     type: "stripe_payment",
     title: "Stripe",
     imageSrc: "integrations/stripe.svg",

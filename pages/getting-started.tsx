@@ -303,7 +303,7 @@ export default function Onboarding(props: inferSSRProps<typeof getServerSideProp
           <CalendarListContainer heading={false} />
         </ClientSuspense>
       ),
-      hideConfirm: true,
+      hideConfirm: false,
       confirmText: t("continue"),
       showCancel: true,
       cancelText: t("continue_without_calendar"),
